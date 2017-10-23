@@ -7,6 +7,10 @@
         <param-name>hello</param-name>
         <param-value>world</param-value>
     </context-param>
+    
+    <listener>
+        <listener-class>RequestListener</listener-class>
+    </listener>
 
     <welcome-file-list>
         <welcome-file>index</welcome-file>
