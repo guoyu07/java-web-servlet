@@ -1,3 +1,4 @@
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -11,30 +12,16 @@ import java.util.Date;
 import java.util.Enumeration;
 import java.util.Map;
 
-public class HelloServlet extends HttpServlet {
+public class IndexServlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-
-        Enumeration names = config.getInitParameterNames();
-        while (names.hasMoreElements()) {
-            String name = (String)names.nextElement();
-            System.out.println(name);
-        }
-
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ServletContext context = this.getServletContext();
-        Enumeration names = context.getAttributeNames();
-        while (names.hasMoreElements()) {
-            String name = (String)names.nextElement();
-            System.out.println(name);
-        }
-
-        PrintWriter w = response.getWriter();
-        w.write("I am servlet: " + request.getRequestURL());
+        RequestDispatcher disp = this.getServletContext().getRequestDispatcher("/hello");
+        disp.include(request, response);
     }
 }
